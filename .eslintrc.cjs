@@ -1,4 +1,4 @@
-	module.exports = {
+module.exports = {
 	root: true,
 	parser: '@typescript-eslint/parser',
 	extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
@@ -7,7 +7,7 @@
 	overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
 	settings: {
 		'svelte3/typescript': () => require('typescript'),
-		"svelte3/ignore-styles": () => true
+		'svelte3/ignore-styles': () => true,
 	},
 	parserOptions: {
 		sourceType: 'module',
@@ -18,17 +18,17 @@
 	env: {
 		browser: true,
 		es2017: true,
-		node: true
+		node: true,
 	},
 	rules: {
-		"@typescript-eslint/ban-types": [
-			"error",
+		'@typescript-eslint/ban-types': [
+			'error',
 			{
-				"extendDefaults": true,
-				"types": {
-					"{}": false
-				}
-			}
-		]
-	}
+				extendDefaults: true,
+				types: {
+					'{}': false,
+				},
+			},
+		],
+	},
 };

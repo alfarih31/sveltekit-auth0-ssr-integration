@@ -17,11 +17,9 @@ cp ./.env.example ./.env
 2. Belows are available configurations:
 
 | Key               | Description            | Required | Values |
-|-------------------|------------------------| ----- |--------|
-| `VITE_APP_NAME`   | Application name's     | **✓** | String |
-| `VITE_PUBLIC_URL` | Application public url | **✓** | String |
-
-
+| ----------------- | ---------------------- | -------- | ------ |
+| `VITE_APP_NAME`   | Application name's     | **✓**    | String |
+| `VITE_PUBLIC_URL` | Application public url | **✓**    | String |
 
 ### Install Dependencies
 

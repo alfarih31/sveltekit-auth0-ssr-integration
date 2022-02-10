@@ -4,24 +4,24 @@
 
 // Svelte Colors!
 @use '@material/theme/index' as theme with (
-  $primary: #3f51b5,
-  $secondary: #757de8,
-  $surface: #fff,
-  $background: #fff,
-  $error: color-palette.$red-900
+	$primary: #3f51b5,
+	$secondary: #757de8,
+	$surface: #fff,
+	$background: #fff,
+	$error: color-palette.$red-900
 );
 
-@import "typhography";
+@import 'typhography';
 
 html,
 body {
-  background-color: theme.$surface;
-  color: theme.$on-surface;
+	background-color: theme.$surface;
+	color: theme.$on-surface;
 }
 
 a {
-  color: #40b3ff;
+	color: #40b3ff;
 }
 a:visited {
-  color: color.scale(#40b3ff, $lightness: -35%);
+	color: color.scale(#40b3ff, $lightness: -35%);
 }
