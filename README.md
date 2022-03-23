@@ -16,10 +16,11 @@ cp ./.env.example ./.env
 
 2. Belows are available configurations:
 
-| Key               | Description            | Required | Values |
-| ----------------- | ---------------------- | -------- | ------ |
-| `VITE_APP_NAME`   | Application name's     | **✓**    | String |
-| `VITE_PUBLIC_URL` | Application public url | **✓**    | String |
+| Key              | Description         | Required | Values |
+|------------------|---------------------| -------- | ------ |
+| `VITE_APP_NAME`  | Application name's  | **✓**    | String |
+| `ENCRYPT_SECRET` | Encryption secret   | **✓**    | String |
+| `BASE_URL`       | Application baseURL | **✓**    | String |
 
 ### Install Dependencies
 
