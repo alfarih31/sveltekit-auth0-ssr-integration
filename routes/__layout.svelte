@@ -1,11 +1,11 @@
 <script lang="ts" context="module">
-	import routeConfig, { loginPath, homePath } from '$configs/route.config';
+	import routeConfig, { loginPath } from '$configs/route.config';
 	import Vertical from '$components/layouts/Vertical.svelte';
 	import Full from '$components/layouts/Full.svelte';
 	import type { LoadInput, LoadOutput } from '@sveltejs/kit/types/private';
 	import { getSession } from '$lib/services/api/auth';
 	import { browser } from '$app/env';
-	import { goto } from '$app/navigation';
+	import { ERR_FORBIDDEN, ERR_UNAUTHORIZED } from '$lib';
 
 	const getRoutePermission = (pathname: string, auth?: App.Session): boolean => {
 		if (pathname === loginPath) {
@@ -24,48 +24,40 @@
 		return c.permissions.length === 0;
 	};
 
-	const authCheck = async (
+	const authCheck = (
 		_pathname: string,
 		_session?: App.Session
-	): Promise<{ status: number; redirect?: string; message?: string }> =>
-		new Promise<{ status: number; redirect?: string; message?: string }>(async (resolve) => {
-			if (browser) {
-				const isAllowed = getRoutePermission(_pathname, _session);
+	): { status: number; redirect?: string; error?: Error } => {
+		const isAllowed = getRoutePermission(_pathname, _session);
 
-				if (!isAllowed) {
-					if (_session && _session.authenticated) {
-						if (_pathname === loginPath) {
-							goto(homePath, { replaceState: true }).then(() => {
-								resolve({
-									status: 200,
-								});
-							});
-							return;
-						}
-
-						return resolve({
-							status: 403,
-							message: 'Forbidden',
-						});
-					}
-
-					if (_pathname !== loginPath) {
-						goto(loginPath, { replaceState: true }).then(() => {
-							resolve({
-								status: 200,
-							});
-						});
-						return;
-					}
+		if (!isAllowed) {
+			if (_session && _session.authenticated) {
+				if (_pathname === loginPath) {
+					return {
+						status: 403,
+						error: ERR_FORBIDDEN,
+					};
 				}
+
+				return {
+					status: 401,
+					error: ERR_UNAUTHORIZED,
+				};
 			}
 
-			return resolve({
-				status: 200,
-			});
-		});
+			if (_pathname !== loginPath) {
+				return {
+					status: 302,
+					redirect: loginPath,
+				};
+			}
+		}
 
-	export async function load({ url: { pathname } }: LoadInput): Promise<LoadOutput> {
+		return {
+			status: 200,
+		};
+	};
+	export async function load({ url: { pathname }, session }: LoadInput): Promise<LoadOutput> {
 		let layout = Full;
 
 		const config = routeConfig[pathname];
@@ -75,13 +67,16 @@
 			}
 		}
 
-		const session = await getSession();
+		if (browser) {
+			session = await getSession();
+		}
+
+		const check = authCheck(pathname, session);
 
 		return {
+			...check,
 			props: {
 				Layout: layout,
-				pathname,
-				session,
 			},
 		};
 	}
@@ -89,20 +84,8 @@
 
 <script lang="ts">
 	import { SvelteComponent } from 'svelte';
-	import Error from '$components/Error.svelte';
-	import PageLoading from '$components/PageLoading.svelte';
 
-	export let session: App.Session;
-	export let pathname: string;
-	export let Layout: SvelteComponent;
-
-	let pageStatus: { status: number; message?: string } | void;
-
-	$: {
-		authCheck(pathname, session).then((data) => {
-			pageStatus = data;
-		});
-	}
+	export let Layout: SvelteComponent = Full;
 </script>
 
 <svelte:head>
@@ -110,13 +93,5 @@
 </svelte:head>
 
 <svelte:component this={Layout}>
-	{#if pageStatus}
-		{#if pageStatus.status === 200}
-			<slot />
-		{:else}
-			<Error status={pageStatus.status} message={pageStatus.message} />
-		{/if}
-	{:else}
-		<PageLoading />
-	{/if}
+	<slot />
 </svelte:component>

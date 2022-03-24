@@ -1,32 +1,41 @@
 export default class APPError extends Error {
-  code;
+	code;
 
-  source;
+	source;
 
-  metadata;
+	metadata;
 
-  constructor(code: string, options: { message?: string; source?: unknown; metadata?: unknown }) {
-    const { message, source, metadata } = options;
-    super(message);
+	constructor(
+		code: string,
+		options: { message?: string; source?: unknown; metadata?: unknown } = {}
+	) {
+		const { message, source, metadata } = options;
+		super(message || '');
 
-    Object.setPrototypeOf(this, new.target.prototype);
+		Object.setPrototypeOf(this, new.target.prototype);
 
-    this.code = code;
-    this.name = 'APPError';
-    this.source = source;
-    this.metadata = metadata;
-  }
+		this.name = 'APPError';
+		this.code = code;
+		this.source = source;
+		this.metadata = metadata;
+		Error.captureStackTrace(this);
+	}
+
+	compose({
+		code,
+		message,
+		source,
+		metadata,
+	}: {
+		code?: string;
+		message?: string;
+		source?: unknown;
+		metadata?: unknown;
+	}): APPError {
+		return new APPError(code || this.code, {
+			message: message || this.message,
+			metadata: metadata || this.metadata,
+			source: source || this.source,
+		});
+	}
 }
-
-export const throwError = (
-  message: string,
-  options: { code: string; metadata?: unknown; source?: unknown; err?: Error } = {
-    code: 'APP_ERR',
-  }
-): void => {
-  throw new APPError(options.code, {
-    message,
-    metadata: options.metadata,
-    source: options.source,
-  });
-};

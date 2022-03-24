@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Snackbar, { Label, SnackbarComponentDev, Actions } from '@smui/snackbar';
+	import Snackbar, { Label, Actions, SnackbarComponentDev } from '@smui/snackbar';
 	import IconButton from '@smui/icon-button';
 	import { uiState } from '$lib/stores';
 	import { hideSnackbar } from '$lib/stores/actions';

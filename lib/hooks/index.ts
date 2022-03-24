@@ -1,9 +1,12 @@
 import type { GetSession, Handle } from '@sveltejs/kit';
 import type { MaybePromise, RequestEvent } from '@sveltejs/kit/types/private';
 import { hydrate } from '$lib/hooks/store.hook';
+import { getSessionFromRequest } from '$lib/hooks/auth.hook';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const states = hydrate(event.request);
+
+	event.locals.session = getSessionFromRequest(event.request);
 
 	return resolve(event, {
 		transformPage: ({ html }) => {

@@ -1,6 +1,6 @@
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
-import APPError, { throwError } from './app-error';
+import { ERR_API } from '$lib';
 
 type HandlerArgs = {
 	path: string;
@@ -29,8 +29,6 @@ export enum HTTP_METHOD {
 	DELETE = 'DELETE',
 	PATCH = 'PATCH',
 }
-
-const ERR_CODE = 'API_ERR';
 
 export default class HTTPClient implements IHTTPClient {
 	private client!: AxiosInstance;
@@ -102,7 +100,7 @@ export default class HTTPClient implements IHTTPClient {
 
 			const handler = this.HTTP_HANDLERS[method];
 			if (!handler) {
-				throwError('Method not implemented', { code: ERR_CODE });
+				throw ERR_API.compose({ message: 'method not implemented' });
 			}
 
 			return await handler<T>(options);
@@ -116,7 +114,7 @@ export default class HTTPClient implements IHTTPClient {
 				err.message = response.data.message;
 			}
 
-			throw new APPError(ERR_CODE, { message: err.message });
+			throw ERR_API.compose({ message: err.message });
 		}
 	}
 }

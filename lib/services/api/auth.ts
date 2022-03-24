@@ -1,6 +1,5 @@
 import { authClient } from '$lib/services/api/clients';
 import { HTTP_METHOD } from '$lib/modules/http-client';
-import { browser } from '$app/env';
 
 export const login = async (username: string, password: string): Promise<App.Session> => {
 	const res = await authClient.handleRequest<{ data: App.Session }>(HTTP_METHOD.POST, {
