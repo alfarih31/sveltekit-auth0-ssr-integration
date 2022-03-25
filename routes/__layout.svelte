@@ -77,6 +77,7 @@
 			...check,
 			props: {
 				Layout: layout,
+				session,
 			},
 		};
 	}
@@ -84,8 +85,20 @@
 
 <script lang="ts">
 	import { SvelteComponent } from 'svelte';
+	import md5 from 'md5';
+	import { session as appSession } from '$app/stores';
 
 	export let Layout: SvelteComponent = Full;
+	export let session: App.Session = $appSession;
+
+	appSession.subscribe(() => {});
+
+	$: {
+		if (md5(JSON.stringify($appSession)) !== md5(JSON.stringify(session))) {
+			console.log('HERE');
+			appSession.set(session);
+		}
+	}
 </script>
 
 <svelte:head>

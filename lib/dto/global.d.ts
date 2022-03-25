@@ -1,4 +1,4 @@
-import type { State } from '$dto/states';
+import type {} from '$dto/stores';
 
 export {};
 
