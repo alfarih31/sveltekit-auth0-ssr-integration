@@ -43,3 +43,7 @@ Use this after edit any sass on [src/assets/scss](src/assets/scss) to make chang
 ```bash
 npm run eject
 ```
+
+### Contributors ###
+
+- Alfarih Faza <alfarihfz@gmail.com>
