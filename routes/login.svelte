@@ -5,7 +5,7 @@
 	import { showSnackbar } from '$lib/stores/actions';
 	import { login } from '$lib/services/api/auth';
 	import { goto } from '$app/navigation';
-	import { homePath } from '$configs/route.config';
+	import { homePath } from '$configs/client/route.config';
 
 	let username: string = '';
 	let password: string = '';

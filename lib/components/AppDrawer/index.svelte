@@ -2,7 +2,7 @@
 	import Drawer, { Content } from '@smui/drawer';
 	import Header from './Header.svelte';
 	import Builder from './Menu/Builder.svelte';
-	import navs from '$configs/navigation.config';
+	import navs from '$configs/client/navigation.config';
 
 	import List from '@smui/list';
 

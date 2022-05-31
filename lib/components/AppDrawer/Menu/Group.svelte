@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { NavigationConfig } from '$lib/dto/config';
+	import type { Configs } from '$lib/dto/config';
 	import Builder from './Builder.svelte';
 	import { Text, Item, Graphic, Meta } from '@smui/list';
 	import Accordion, { Panel, Content } from '@smui-extra/accordion';
 
-	export let nav: NavigationConfig;
+	export let nav: Configs.NavigationConfig;
 
 	let panelOpen = nav?.expanded === true;
 

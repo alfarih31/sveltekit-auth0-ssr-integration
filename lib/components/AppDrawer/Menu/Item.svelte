@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { NavigationConfig } from '$lib/dto/config';
+	import type { Configs } from '$lib/dto/config';
 	import { Item, Text, Graphic } from '@smui/list';
 
-	export let nav: NavigationConfig;
+	export let nav: Configs.NavigationConfig;
 </script>
 
 <Item

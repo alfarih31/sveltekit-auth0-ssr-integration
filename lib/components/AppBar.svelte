@@ -17,7 +17,7 @@
 		<Section>
 			<IconButton class="material-icons MenuIcon" on:click={toggleDrawer}>menu</IconButton>
 
-			<Title>THIS WILL BE TOOLBAR</Title>
+			<Title>CMS User Dashboard</Title>
 		</Section>
 	</Row>
 </TopAppBar>

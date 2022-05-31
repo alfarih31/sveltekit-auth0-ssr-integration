@@ -18,7 +18,6 @@ export default class APPError extends Error {
 		this.code = code;
 		this.source = source;
 		this.metadata = metadata;
-		Error.captureStackTrace(this);
 	}
 
 	compose({

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button, { Label } from '@smui/button';
 	import { Icon } from '@smui/icon-button';
-	import { homePath } from '$configs/route.config';
+	import { homePath } from '$configs/client/sroute.config';
 
 	const ErrorMessageMap: { [key: number]: string } = {
 		100: 'Continue',

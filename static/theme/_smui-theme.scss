@@ -15,13 +15,70 @@
 
 html,
 body {
-	background-color: theme.$surface;
-	color: theme.$on-surface;
+  background-color: theme.$surface;
+  color: theme.$on-surface;
 }
 
 a {
-	color: #40b3ff;
+  color: #40b3ff;
 }
 a:visited {
-	color: color.scale(#40b3ff, $lightness: -35%);
+  color: color.scale(#40b3ff, $lightness: -35%);
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  -moz-osx-font-smoothing: grayscale;
+
+  font-feature-settings: 'liga';
+}
+
+.material-snackbar {
+  &__error {
+    .mdc-snackbar__surface {
+      box-shadow: rgb(0 0 0 / 20%) 0px 3px 5px -1px, rgb(0 0 0 / 14%) 0px 6px 10px 0px,
+      rgb(0 0 0 / 12%) 0px 1px 18px 0px;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.11));
+      background-color: rgb(211, 47, 47);
+    }
+  }
+
+  &__success {
+    .mdc-snackbar__surface {
+      box-shadow: rgb(0 0 0 / 20%) 0px 3px 5px -1px, rgb(0 0 0 / 14%) 0px 6px 10px 0px,
+      rgb(0 0 0 / 12%) 0px 1px 18px 0px;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.11));
+      background-color: rgb(56, 142, 60);
+    }
+  }
+
+  &__info {
+    .mdc-snackbar__surface {
+      box-shadow: rgb(0 0 0 / 20%) 0px 3px 5px -1px, rgb(0 0 0 / 14%) 0px 6px 10px 0px, rgb(0 0 0 / 12%) 0px 1px 18px 0px;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.11));
+      background-color: rgb(2, 136, 209);
+    }
+  }
+
+  &__warning {
+    .mdc-snackbar__surface {
+      box-shadow: rgb(0 0 0 / 20%) 0px 3px 5px -1px, rgb(0 0 0 / 14%) 0px 6px 10px 0px, rgb(0 0 0 / 12%) 0px 1px 18px 0px;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.11));
+      background-color: rgb(245, 124, 0);
+    }
+  }
 }

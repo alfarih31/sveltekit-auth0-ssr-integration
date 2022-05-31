@@ -33,7 +33,7 @@ const config = {
 		vite: {
 			server: {
 				fs: {
-					allow: ['configs'],
+					allow: ['configs/client'],
 				},
 			},
 			resolve: {

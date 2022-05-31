@@ -1,9 +1,8 @@
-import type { NavigationConfig } from '$dto/config';
-import { USER_ROLE } from '$lib/CONSTANTS';
+import type { Configs } from '$dto/config';
 import { showSnackbar } from '$lib/stores/actions';
 import { logout } from '$lib/services/api/auth';
 import { goto } from '$app/navigation';
-import { loginPath } from '$configs/route.config';
+import { loginPath } from '$configs/client/route.config';
 import { browser } from '$app/env';
 
 export const TYPE = {
@@ -11,7 +10,7 @@ export const TYPE = {
 	GROUP: 'group',
 };
 
-const navigationConfig: NavigationConfig[] = [
+const navigationConfig: Configs.NavigationConfig[] = [
 	{
 		id: 'home',
 		title: 'Home',
@@ -32,7 +31,6 @@ const navigationConfig: NavigationConfig[] = [
 				type: 'item',
 				icon: 'account_circle',
 				linkTo: '/personal',
-				permissions: [USER_ROLE.PERSONAL],
 			},
 			{
 				id: 'groups',

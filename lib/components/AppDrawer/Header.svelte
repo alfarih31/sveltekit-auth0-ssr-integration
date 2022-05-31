@@ -2,7 +2,7 @@
 	import { Header } from '@smui/drawer';
 	import { Separator } from '@smui/list';
 	import IconButton from '@smui/icon-button';
-	import { homePath } from '$configs/route.config';
+	import { homePath } from '$configs/client/route.config';
 
 	export let toggleDrawer: () => void;
 </script>
@@ -13,7 +13,7 @@
 <Separator />
 <Header class="DrawerHeader">
 	<a class="mdc-drawer__header-content" href={homePath}>
-		<img src="/img/logo.png" alt={import.meta.env.VITE_APP_NAME} />
+		<img src="/img/logo.png" alt={import.meta.env.VITE_APP_NAME} class="img-fluid" />
 		<div class="mdc-typography--headline6 DrawerHeader__Title">{import.meta.env.VITE_APP_NAME}</div>
 	</a>
 </Header>

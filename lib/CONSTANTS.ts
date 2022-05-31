@@ -1,12 +1,13 @@
-export const USER_ROLE = {
-	PUBLIC: 0,
-	PERSONAL: 1,
+export const SUBJECT = {
+	PUBLIC: 1,
 	ADMIN: 2,
 };
 
+export const AUDIENCE = {
+	ACCESS_CMS: '1',
+};
+
 export const COOKIES_KEY = {
-	SERVER_SIDE_CLIENT_TOKEN: '__sct',
-	CLIENT_SIDE_CLIENT_TOKEN: '__cct',
 	USER_TOKEN: '__ut',
-	SESSION: '__as',
+	USER_REFRESH_TOKEN: '__urt',
 };

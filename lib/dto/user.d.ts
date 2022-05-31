@@ -1,6 +1,7 @@
-declare namespace App {
-	interface User {
+declare namespace User {
+	interface Profile {
 		id: number;
+		fullName: string;
 		role: number;
 	}
 }

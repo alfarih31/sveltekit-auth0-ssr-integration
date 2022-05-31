@@ -4,17 +4,10 @@
 // for information about these interfaces
 
 declare namespace App {
-	interface Locals {
-		session?: Session;
-	}
-
-	interface Platform {}
-
 	interface Session {
-		authenticated: boolean;
-		userID: number;
-		role: number;
+		actor?: {
+			userID: number;
+			subjectID: number;
+		};
 	}
-
-	interface Stuff {}
 }
