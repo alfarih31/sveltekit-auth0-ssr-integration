@@ -19,5 +19,12 @@ declare namespace Configs {
 		fullLayout?: boolean;
 	}
 
-	interface ClientConfigs {}
+	interface ClientConfigs {
+		AUTH0_DOMAIN: string;
+		AUTH0_CLIENT_ID: string;
+	}
+
+	interface ServerConfigs extends ClientConfigs {
+		AUTH0_CLIENT_SECRET: string;
+	}
 }

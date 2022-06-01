@@ -3,6 +3,7 @@ import preprocess from 'svelte-preprocess';
 import autoprefixer from 'autoprefixer';
 import { resolve } from 'path';
 import dotenv from 'dotenv';
+import { isoImport } from 'vite-plugin-iso-import';
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ const config = {
 			template: 'static/app.html',
 		},
 		vite: {
+			plugins: [isoImport()],
 			server: {
 				fs: {
 					allow: ['configs/client'],

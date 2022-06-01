@@ -17,7 +17,7 @@
 		<Section>
 			<IconButton class="material-icons MenuIcon" on:click={toggleDrawer}>menu</IconButton>
 
-			<Title>CMS User Dashboard</Title>
+			<Title>{import.meta.env.VITE_APP_NAME}</Title>
 		</Section>
 	</Row>
 </TopAppBar>

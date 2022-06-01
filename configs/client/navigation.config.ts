@@ -1,9 +1,6 @@
 import type { Configs } from '$dto/config';
-import { showSnackbar } from '$lib/stores/actions';
-import { logout } from '$lib/services/api/auth';
 import { goto } from '$app/navigation';
-import { loginPath } from '$configs/client/route.config';
-import { browser } from '$app/env';
+import { authenticateClient } from '$lib/services/clients/parties/auth0';
 
 export const TYPE = {
 	ITEM: 'item',
@@ -62,13 +59,10 @@ const navigationConfig: Configs.NavigationConfig[] = [
 		type: 'item',
 		icon: '',
 		onClick: async () => {
-			await logout();
-
-			if (browser) {
-				goto(loginPath, { replaceState: true }).then(() => {
-					showSnackbar('Logged out...');
-				});
-			}
+			const url = authenticateClient.buildLogoutUrl({
+				returnTo: window.location.origin + '/api/auth/logout',
+			});
+			await goto(url);
 		},
 	},
 	{

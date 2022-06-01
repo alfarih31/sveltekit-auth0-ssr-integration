@@ -1,0 +1,57 @@
+@mixin generate-border-in-px() {
+	@for $i from 1 through 100 {
+		&-#{$i} {
+			@include border-radius(#{$i}px);
+		}
+
+		&-t-#{$i} {
+			border-top-left-radius: #{$i}px;
+			border-top-right-radius: #{$i}px;
+		}
+
+		&-b-#{$i} {
+			border-bottom-left-radius: #{$i}px;
+			border-bottom-right-radius: #{$i}px;
+		}
+
+		&-tl-#{$i} {
+			border-top-left-radius: #{$i}px;
+		}
+
+		&-tr-#{$i} {
+			border-top-right-radius: #{$i}px;
+		}
+
+		&-bl-#{$i} {
+			border-bottom-left-radius: #{$i}px;
+		}
+
+		&-br-#{$i} {
+			border-bottom-right-radius: #{$i}px;
+		}
+	}
+}
+
+.border {
+	border: 1px solid transparent;
+
+	&-2 {
+		border: 2px solid transparent;
+	}
+
+	&-3 {
+		border: 3px solid transparent;
+	}
+
+	&-4 {
+		border: 4px solid transparent;
+	}
+
+	&-primary {
+		border-color: $primary-color !important;
+	}
+
+	&-rad {
+		@include generate-border-in-px();
+	}
+}

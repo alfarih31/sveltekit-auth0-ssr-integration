@@ -11,6 +11,11 @@ export type SnackbarStore = {
 	onClose: () => void;
 };
 
+export type UserStore = {
+	profile: Partial<User.Profile>;
+};
+
 export type Store = {
 	uiState: UIStore;
+	userState: UserStore;
 };

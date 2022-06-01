@@ -6,8 +6,9 @@
 declare namespace App {
 	interface Session {
 		actor?: {
-			userID: number;
+			userID: string;
 			subjectID: number;
 		};
+		provider: string;
 	}
 }

@@ -1,5 +1,6 @@
 import type { Handle } from '@sveltejs/kit';
 import { hydrate } from '$lib/hooks/store.hook';
+import serverConfigs from '$configs/server';
 
 export const handleEndpoint: Handle = async ({ event, resolve }) => {
 	return resolve(event);
@@ -10,16 +11,18 @@ export const handlePages: Handle = async ({ event, resolve }) => {
 
 	let body = await res.text();
 	if (res.status === 200) {
-		body = body.replace(
-			'$__PRELOADED_STATE__',
-			JSON.stringify(await hydrate(event.request), (key, value) => {
-				if (typeof value === 'bigint') {
-					return Number(value);
-				}
+		body = body
+			.replace('$__PRELOADED_CLIENT_CONFIGS__', JSON.stringify(serverConfigs.clientConfigs))
+			.replace(
+				'$__PRELOADED_STATE__',
+				JSON.stringify(await hydrate(event.request), (key, value) => {
+					if (typeof value === 'bigint') {
+						return Number(value);
+					}
 
-				return value;
-			})
-		);
+					return value;
+				})
+			);
 	} else {
 		body = body
 			.replace('$__PRELOADED_CLIENT_CONFIGS__', null)

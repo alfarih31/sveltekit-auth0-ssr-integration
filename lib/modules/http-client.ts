@@ -111,7 +111,7 @@ export default class HTTPClient implements IHTTPClient {
 				if (response.status === 401) {
 					// TODO: handle on status 401
 				}
-				err.message = response.data.message;
+				err.message = response.data?.message || err.message;
 			}
 
 			throw ERR_API.compose({ message: err.message });

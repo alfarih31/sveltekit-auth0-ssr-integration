@@ -1,0 +1,53 @@
+.btn {
+	@extend .border-rad-5;
+	width: 100%;
+	text-transform: none !important;
+	transition: 0.2s all ease-in-out;
+
+	&-primary {
+		color: white !important;
+		background-color: $primary-color;
+		border-color: $primary-color !important;
+
+		&:hover {
+			background-color: lighten($primary-color, 10%);
+		}
+
+		&:focus,
+		&:active {
+			background-color: darken($primary-color, 10%);
+		}
+	}
+
+	&-secondary {
+		color: lighten(white, 5%) !important;
+		background-color: $secondary-color;
+		border-color: $secondary-color;
+
+		&:hover {
+			background-color: lighten($secondary-color, 2%);
+			color: darken(white, 5%) !important;
+		}
+
+		&:focus,
+		&:active {
+			color: lighten(white, 10%) !important;
+			background-color: darken($secondary-color, 10%);
+		}
+	}
+
+	&-success {
+		color: white !important;
+		background-color: $success-color;
+		border-color: $success-color;
+
+		&:hover {
+			background-color: lighten($success-color, 2%);
+		}
+
+		&:focus,
+		&:active {
+			background-color: darken($success-color, 10%);
+		}
+	}
+}

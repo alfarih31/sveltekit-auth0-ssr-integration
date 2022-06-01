@@ -34,5 +34,5 @@
 			"$configs/*": ["configs/*"]
 		}
 	},
-	"include": ["**/*.d.ts",  "**/*.ts", "**/*.svelte"]
+  "include": ["**/*.d.ts",  "**/*.ts", "**/*.svelte", "**/*.cjs"]
 }

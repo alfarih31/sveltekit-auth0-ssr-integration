@@ -1,0 +1,206 @@
+.cms-auth {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	
+	@include media($from: 'sm', $until: 'lg'){
+		align-items: flex-start;
+	}
+
+	background: linear-gradient(to right, #c6f6d5, #90cdf4);
+	overflow-x: hidden;
+	overflow-y: auto;
+
+	&__company-profile {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		font-family: $font-manrope !important;
+
+		&__image-profile-container {
+			width: 200px;
+			overflow: hidden;
+
+			@include media($from: 'xs', $until: 'md'){
+				width: 250px;
+				align-self: center;
+			}
+			
+
+			img {
+				object-fit: cover;
+				width: auto;
+				max-width: 100%;
+			}
+		}
+
+		&__text-header {
+			font-family: $font-manrope !important;
+			font-size: 42px;
+			font-weight: 700;
+			margin-block-start: 0.5em;
+			margin-block-end: 0.5em;
+
+			@include media($from: 'xs', $until: 'md'){
+				font-size: 26px;
+				text-align: center;
+			}
+		}
+
+		&__text-hotline-service {
+			display: flex;
+			flex-direction: column;
+
+			
+			@include media($from: 'xs', $until: 'md'){
+				display: none;
+			}
+
+			&__mobile-floating {
+				@include media($from: 'md'){
+					display: none;
+				}
+
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: absolute;
+				bottom: 15px;
+				right: 15px;
+				padding: 5px 15px;
+				width: auto;
+			}
+		}
+
+		&__text-customer-care {
+			font-family: $font-manrope !important;
+			font-size: 18px;
+		}
+
+		&__text-contacts {
+			font-family: $font-manrope !important;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			gap: 10px;
+			font-size: 25px;
+			font-weight: 700;
+
+			a {
+				text-decoration: none;
+				color: #4e4e4e;
+				display: flex;
+				align-items: center;
+				gap: 20px;
+			}
+		}
+	}
+
+	&__form-switcher {
+		&__wrapper {
+			animation: hideLayer 0.3s ease-out forwards;
+			display: none;
+
+			&.is-active {
+				display: block;
+				animation: showLayer 0.3s ease-in forwards;
+			}
+
+			&__form-signin {
+				animation: hideSignin 0.3s ease-out forwards;
+
+				&.is-active {
+					animation: showSignin 0.3s ease-out forwards;
+				}
+			}
+
+			&__form-signup {
+				animation: hideSignup 0.3s ease-out forwards;
+				overflow: hidden;
+
+				&__content {
+					@include scrollbar(7px, $secondary-color, white);
+					overflow-y: auto;
+
+					@include media($from: 'lg'){
+						max-height: 70vh;
+					}
+
+					@include media($from: 'xs', $until: 'md'){
+						max-height: 45vh;
+					}
+				}
+
+				&.is-active {
+					animation: showSignup 0.3s ease-out forwards;
+				}
+			}
+		}
+	}
+}
+
+@keyframes showLayer {
+	50% {
+		z-index: 1;
+	}
+	100% {
+		z-index: 1;
+	}
+}
+
+@keyframes hideLayer {
+	0% {
+		z-index: 1;
+	}
+	50% {
+		z-index: 1;
+	}
+}
+
+@keyframes showSignin {
+	0% {
+		transform: translate(50%, 0);
+	}
+	50% {
+		transform: translate(25%, 0);
+	}
+	100% {
+		transform: translate(0, 0);
+	}
+}
+
+@keyframes hideSignin {
+	0% {
+		transform: translate(0, 0);
+	}
+	50% {
+		transform: translate(25%, 0);
+	}
+	100% {
+		transform: translate(50%, 0);
+	}
+}
+
+@keyframes showSignup {
+	0% {
+		transform: translate(50%, 0);
+	}
+	50% {
+		transform: translate(25%, 0);
+	}
+	100% {
+		transform: translate(0, 0);
+	}
+}
+
+@keyframes hideSignup {
+	0% {
+		transform: translate(0, 0);
+	}
+	50% {
+		transform: translate(25%, 0);
+	}
+	100% {
+		transform: translate(50%, 0);
+	}
+}

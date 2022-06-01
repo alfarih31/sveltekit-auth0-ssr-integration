@@ -6,10 +6,10 @@ export const loginPath = '/login';
 
 const routeConfig: { [key: string]: Configs.RouteConfig } = {
 	[homePath]: {
-		permissions: [SUBJECT.ADMIN],
+		permissions: [SUBJECT.USER],
 	},
 	'/personal': {
-		permissions: [SUBJECT.ADMIN],
+		permissions: [SUBJECT.USER],
 	},
 	'/login': {
 		fullLayout: true,

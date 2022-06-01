@@ -5,7 +5,7 @@
 	import type { LoadInput, LoadOutput } from '@sveltejs/kit/types/private';
 	import { authCheck } from '$lib/hooks/auth.client.hook';
 
-	export async function load({ url: { pathname }, fetch }: LoadInput): Promise<LoadOutput> {
+	export async function load({ url: { pathname, origin }, fetch }: LoadInput): Promise<LoadOutput> {
 		// Session checking
 		const res = await fetch('/api/auth/session');
 		const session = await res.json();
@@ -45,4 +45,5 @@
 
 <style lang="scss" global>
 	@import 'static/scss/core/index';
+	@import 'static/scss/modules/index';
 </style>

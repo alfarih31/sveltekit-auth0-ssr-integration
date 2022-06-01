@@ -1,4 +1,4 @@
-# Material UI Dashboard Template using `Sveltekit`
+# `Sveltekit` & `Auth0` - SSR integration
 
 ## Prerequisites
 
@@ -16,11 +16,13 @@ cp ./.env.example ./.env
 
 2. Belows are available configurations:
 
-| Key              | Description         | Required | Values |
-|------------------|---------------------| -------- | ------ |
-| `VITE_APP_NAME`  | Application name's  | **✓**    | String |
-| `ENCRYPT_SECRET` | Encryption secret   | **✓**    | String |
-| `BASE_URL`       | Application baseURL | **✓**    | String |
+| Key                   | Description                     | Required | Values |
+|-----------------------|---------------------------------|----------|--------|
+| `VITE_APP_NAME`       | Application name's              | **✓**    | String |
+| `ENCRYPT_SECRET`      | Encryption secret               | **✓**    | String |
+| `AUTH0_DOMAIN`        | Auth0 application domain        | **✓**    | String |
+| `AUTH0_CLIENT_ID`     | Auth0 application client id     | **✓**    | String |
+| `AUTH0_CLIENT_SECRET` | Auth0 application client secret | **✓**    | String |
 
 ### Install Dependencies
 
@@ -34,14 +36,6 @@ npm install
 
 ```bash
 npm run dev
-```
-
-### Ejecting `sass` to static `css`
-
-Use this after edit any sass on [src/assets/scss](src/assets/scss) to make changes effect
-
-```bash
-npm run eject
 ```
 
 ### Contributors ###

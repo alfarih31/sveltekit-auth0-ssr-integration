@@ -1,6 +1,6 @@
 export const SUBJECT = {
 	PUBLIC: 1,
-	ADMIN: 2,
+	USER: 2,
 };
 
 export const AUDIENCE = {
@@ -9,5 +9,7 @@ export const AUDIENCE = {
 
 export const COOKIES_KEY = {
 	USER_TOKEN: '__ut',
+	USER_MANAGEMENT_TOKEN: '__umt',
+	USER_ID_TOKEN: '__idt',
 	USER_REFRESH_TOKEN: '__urt',
 };

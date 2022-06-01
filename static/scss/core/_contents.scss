@@ -45,7 +45,6 @@ html {
       .DrawerOpen {
         @extend .DrawerTransition;
 
-        width: calc(100% - #{$drawer-width}) !important;
         margin-left: $drawer-width !important;
 
         .MenuIcon {
@@ -117,10 +116,10 @@ html {
         @extend .DrawerTransition;
 
         position: relative;
-        width: 100%;
+        max-width: 100%;
         backface-visibility: hidden;
         min-height: calc(100vh - 4rem);
-        padding: calc(1rem + #{$footer-height}) 1rem;
+        padding: calc(0rem + #{$footer-height}) 0;
       }
 
       .MainFullLayout {
