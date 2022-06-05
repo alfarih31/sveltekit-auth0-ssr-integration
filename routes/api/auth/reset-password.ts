@@ -6,7 +6,7 @@ import { getSessionFromRequest } from '$lib/hooks/auth.hook';
 import { updateUserProfile } from '$lib/services/api/by-request/auth0';
 import * as yup from 'yup';
 
-export const post: RequestHandler = async ({ request }: RequestEvent) => {
+export const patch: RequestHandler = async ({ request }: RequestEvent) => {
 	const body = await request.json();
 	const { oldPassword, newPassword } = body;
 

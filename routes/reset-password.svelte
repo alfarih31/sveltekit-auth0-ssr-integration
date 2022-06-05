@@ -70,7 +70,7 @@
 		isLoading = true;
 		const { oldPassword, newPassword } = fields;
 		try {
-			await internalProxyClient.handleRequest(HTTP_METHOD.POST, {
+			await internalProxyClient.handleRequest(HTTP_METHOD.PATCH, {
 				path: '/auth/reset-password',
 				data: {
 					oldPassword,
