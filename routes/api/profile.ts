@@ -1,8 +1,15 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { getUserInfo, updateUserProfile } from '$lib/services/api/by-request/auth0';
-import { getSessionFromRequest } from '$lib/hooks/auth.hook';
+import { getSessionFromRequest, getUserTokenFromRequest } from '$lib/hooks/auth.hook';
 
 export const get: RequestHandler = async ({ request }) => {
+	const userToken = getUserTokenFromRequest(request);
+	if (!userToken) {
+		return {
+			status: 401,
+		};
+	}
+
 	return {
 		status: 200,
 		headers: {
