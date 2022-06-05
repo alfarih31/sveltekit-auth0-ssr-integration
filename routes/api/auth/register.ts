@@ -1,5 +1,4 @@
-import type { RequestHandler } from '@sveltejs/kit';
-import type { RequestEvent } from '@sveltejs/kit/types/private';
+import type { RequestHandler, RequestEvent } from '@sveltejs/kit';
 import * as yup from 'yup';
 import { baseClient, oauthClient } from '$lib/services/clients/rest/auth0';
 import { HTTP_METHOD } from '$lib/modules/http-client';

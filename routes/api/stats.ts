@@ -1,4 +1,4 @@
-import type { RequestEvent } from '@sveltejs/kit/types/private';
+import type { RequestEvent } from '@sveltejs/kit';
 import { DateTime } from 'luxon';
 
 import { getDailyStats, getUsers } from '$lib/services/api/by-request/auth0';

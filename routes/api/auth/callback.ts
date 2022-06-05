@@ -1,4 +1,4 @@
-import type { RequestEvent } from '@sveltejs/kit/types/private';
+import type { RequestEvent } from '@sveltejs/kit';
 import serverConfigs from '$configs/server';
 import cookie from 'cookie';
 import { COOKIES_KEY } from '$lib/CONSTANTS';

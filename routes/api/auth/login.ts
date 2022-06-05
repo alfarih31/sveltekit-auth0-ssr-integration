@@ -1,8 +1,7 @@
-import type { RequestHandler } from '@sveltejs/kit';
+import type { RequestEvent, RequestHandler } from '@sveltejs/kit';
 import { COOKIES_KEY } from '$lib/CONSTANTS';
 import cookie from 'cookie';
 import { encryptString } from '$lib/modules/crypto';
-import type { RequestEvent } from '@sveltejs/kit/types/private';
 import DateUtils from '$lib/modules/date-utils';
 import * as yup from 'yup';
 import { oauthClient } from '$lib/services/clients/rest/auth0';

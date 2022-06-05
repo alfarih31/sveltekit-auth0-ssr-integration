@@ -1,4 +1,4 @@
-import type { RequestEvent } from '@sveltejs/kit/types/private';
+import type { RequestEvent } from '@sveltejs/kit';
 import { getUsers } from '$lib/services/api/by-request/auth0';
 
 export const get: ({ request }: RequestEvent) => Promise<{

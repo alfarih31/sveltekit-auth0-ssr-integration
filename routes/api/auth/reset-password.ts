@@ -1,10 +1,8 @@
-import type { RequestHandler } from '@sveltejs/kit';
-import type { RequestEvent } from '@sveltejs/kit/types/private';
+import type { RequestHandler, RequestEvent } from '@sveltejs/kit';
 import { oauthClient } from '$lib/services/clients/rest/auth0';
 import { HTTP_METHOD } from '$lib/modules/http-client';
 import serverConfigs from '$configs/server';
 import { getSessionFromRequest } from '$lib/hooks/auth.hook';
-import { logoutPath } from '$configs/client/route.config';
 import { updateUserProfile } from '$lib/services/api/by-request/auth0';
 import * as yup from 'yup';
 
