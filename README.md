@@ -19,6 +19,7 @@ cp ./.env.example ./.env
 | Key                   | Description                     | Required | Values |
 |-----------------------|---------------------------------|----------|--------|
 | `VITE_APP_NAME`       | Application name's              | **✓**    | String |
+| `BASE_URL`            | Runtime baseURL                 | **✓**    | String |
 | `ENCRYPT_SECRET`      | Encryption secret               | **✓**    | String |
 | `AUTH0_DOMAIN`        | Auth0 application domain        | **✓**    | String |
 | `AUTH0_CLIENT_ID`     | Auth0 application client id     | **✓**    | String |
