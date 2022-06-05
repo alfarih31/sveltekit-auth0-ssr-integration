@@ -1,4 +1,5 @@
 import { Configs } from '$dto/config';
+import type { Store } from '$dto/stores';
 
 export {};
 
@@ -8,7 +9,7 @@ declare global {
 	}
 
 	interface Window {
-		__PRELOADED_STATE__?: State;
+		__PRELOADED_STATE__?: Store;
 		__PRELOADED_CLIENT_CONFIGS__?: Configs.ClientConfigs;
 	}
 

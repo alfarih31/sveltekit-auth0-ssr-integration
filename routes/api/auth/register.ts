@@ -1,13 +1,13 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import { COOKIES_KEY } from '$lib/CONSTANTS';
-import cookie from 'cookie';
-import { encryptString } from '$lib/modules/crypto';
 import type { RequestEvent } from '@sveltejs/kit/types/private';
-import DateUtils from '$lib/modules/date-utils';
 import * as yup from 'yup';
-import { oauthClient } from '$lib/services/clients/rest/auth0';
+import { baseClient, oauthClient } from '$lib/services/clients/rest/auth0';
 import { HTTP_METHOD } from '$lib/modules/http-client';
 import serverConfigs from '$configs/server';
+import cookie from 'cookie';
+import { COOKIES_KEY } from '$lib/CONSTANTS';
+import DateUtils from '$lib/modules/date-utils';
+import { encryptString } from '$lib/modules/crypto';
 import { getUserManagementToken } from '$lib/services/api/by-request/auth0';
 
 export const post: RequestHandler = async ({ request }: RequestEvent) => {
@@ -46,6 +46,17 @@ export const post: RequestHandler = async ({ request }: RequestEvent) => {
 	}
 
 	try {
+		await baseClient.handleRequest(HTTP_METHOD.POST, {
+			path: '/dbconnections/signup',
+			data: {
+				client_id: serverConfigs.AUTH0_CLIENT_ID,
+				email,
+				password,
+				username: email,
+				connection: 'Username-Password-Authentication',
+			},
+		});
+
 		let { data } = await oauthClient.handleRequest<{
 			access_token: string;
 			refresh_token?: string;
@@ -62,7 +73,6 @@ export const post: RequestHandler = async ({ request }: RequestEvent) => {
 				scope: 'offline_access openid email profile',
 			},
 		});
-
 		const now = new Date();
 
 		const cookies = [

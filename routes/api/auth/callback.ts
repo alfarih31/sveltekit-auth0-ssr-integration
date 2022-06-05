@@ -7,6 +7,7 @@ import { encryptString } from '$lib/modules/crypto';
 import { homePath } from '$configs/client/route.config';
 import { oauthClient } from '$lib/services/clients/rest/auth0';
 import { HTTP_METHOD } from '$lib/modules/http-client';
+import { getUserManagementToken } from '$lib/services/api/by-request/auth0';
 
 export const get: ({
 	request,
@@ -56,21 +57,7 @@ export const get: ({
 		}),
 	];
 
-	data = (
-		await oauthClient.handleRequest<{
-			access_token: string;
-			expires_in: number;
-		}>(HTTP_METHOD.POST, {
-			path: '/token',
-			data: {
-				grant_type: 'client_credentials',
-				client_id: serverConfigs.AUTH0_CLIENT_ID,
-				client_secret: serverConfigs.AUTH0_CLIENT_SECRET,
-				scope: 'read:users read:user_idp_tokens read:stats update:users',
-				audience: `https://${serverConfigs.AUTH0_DOMAIN}/api/v2/`,
-			},
-		})
-	).data;
+	data = await getUserManagementToken(request);
 
 	cookies.push(
 		cookie.serialize(COOKIES_KEY.USER_MANAGEMENT_TOKEN, data.access_token, {

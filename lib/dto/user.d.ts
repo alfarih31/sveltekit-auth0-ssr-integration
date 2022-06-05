@@ -6,5 +6,6 @@ declare namespace User {
 		email: string;
 		email_verified: boolean;
 		provider: string;
+		picture: string;
 	}
 }

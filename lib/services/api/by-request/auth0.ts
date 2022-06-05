@@ -3,10 +3,12 @@ import {
 	getUserManagementTokenFromRequest,
 	getUserTokenFromRequest,
 } from '$lib/hooks/auth.hook';
-import { apiClient, baseClient } from '$lib/services/clients/rest/auth0';
+import { apiClient, baseClient, oauthClient } from '$lib/services/clients/rest/auth0';
 import { HTTP_METHOD } from '$lib/modules/http-client';
 import type { Auth0UserProfile } from 'auth0-js';
 import { DateTime } from 'luxon';
+import serverConfigs from '$configs/server';
+import APPError from '$lib/modules/app-error';
 
 export const getUserInfo = async (req: Request): Promise<Partial<User.Profile>> => {
 	const userToken = getUserTokenFromRequest(req);
@@ -31,6 +33,7 @@ export const getUserInfo = async (req: Request): Promise<Partial<User.Profile>> 
 		email: data.email,
 		email_verified: data.email_verified,
 		provider,
+		picture: data.picture,
 	};
 };
 
@@ -60,7 +63,7 @@ export const getUsers = async <T>(
 	const { data } = await apiClient.handleRequest<GetUserRes<T>>(HTTP_METHOD.GET, {
 		path: '/users',
 		data: {
-			page: opts.page || 1,
+			page: opts.page || 0,
 			per_page: opts.perPage || 10,
 			include_totals: opts.includeTotals || false,
 			fields: opts.fields ? opts.fields.join(',') : '',
@@ -127,6 +130,7 @@ export const resendVerificationEmail = async (req: Request) => {
 		path: '/jobs/verification-email',
 		data: {
 			user_id: session.provider + '|' + session.actor.userID,
+			client_id: serverConfigs.AUTH0_CLIENT_ID,
 			identity: {
 				user_id: session.actor.userID,
 				provider: session.provider,
@@ -138,4 +142,62 @@ export const resendVerificationEmail = async (req: Request) => {
 			},
 		},
 	});
+};
+
+export const getUserManagementToken = async (
+	req: Request
+): Promise<{ access_token: string; expires_in: number }> => {
+	const { data } = await oauthClient.handleRequest<{
+		access_token: string;
+		expires_in: number;
+	}>(HTTP_METHOD.POST, {
+		path: '/token',
+		data: {
+			grant_type: 'client_credentials',
+			client_id: serverConfigs.AUTH0_CLIENT_ID,
+			client_secret: serverConfigs.AUTH0_CLIENT_SECRET,
+			scope: 'read:users read:user_idp_tokens read:stats update:users',
+			audience: `https://${serverConfigs.AUTH0_DOMAIN}/api/v2/`,
+			nonce: 'nonce',
+		},
+	});
+
+	return data;
+};
+
+export const updateUserProfile = async (
+	req: Request,
+	id: string,
+	profile: Partial<
+		Omit<
+			Auth0UserProfile,
+			| 'user_id'
+			| 'clientID'
+			| 'gender'
+			| 'locale'
+			| 'identities'
+			| 'created_at'
+			| 'updated_at'
+			| 'sub'
+			| 'user_metadata'
+			| 'app_metadata'
+		> & { password: string }
+	>
+): Promise<Auth0UserProfile> => {
+	const token = getUserManagementTokenFromRequest(req);
+	if (!token) {
+		throw new APPError('APP_ERROR', { message: 'no token to perform this action' });
+	}
+
+	const { data } = await apiClient.handleRequest<Auth0UserProfile>(HTTP_METHOD.PATCH, {
+		path: `/users/${id}`,
+		data: profile,
+		config: {
+			headers: {
+				authorization: `Bearer ${token}`,
+			},
+		},
+	});
+
+	return data;
 };

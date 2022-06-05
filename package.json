@@ -18,6 +18,7 @@
 		"@smui-extra/accordion": "^6.0.0-beta.15",
 		"@smui/button": "^6.0.0-beta.15",
 		"@smui/card": "^6.0.0-beta.15",
+		"@smui/circular-progress": "^6.0.0-beta.16",
 		"@smui/common": "^6.0.0-beta.15",
 		"@smui/data-table": "^6.0.0-beta.16",
 		"@smui/drawer": "^6.0.0-beta.15",
@@ -26,6 +27,7 @@
 		"@smui/linear-progress": "^6.0.0-beta.15",
 		"@smui/list": "^6.0.0-beta.15",
 		"@smui/paper": "^6.0.0-beta.15",
+		"@smui/select": "^6.0.0-beta.16",
 		"@smui/snackbar": "^6.0.0-beta.15",
 		"@smui/textfield": "^6.0.0-beta.15",
 		"@smui/top-app-bar": "^6.0.0-beta.15",
@@ -38,6 +40,7 @@
 		"@types/luxon": "^2.3.2",
 		"@types/nanoid": "^3.0.0",
 		"@types/tsscmp": "^1.0.0",
+		"@types/yup": "^0.29.14",
 		"@typescript-eslint/eslint-plugin": "^5.16.0",
 		"@typescript-eslint/parser": "^5.16.0",
 		"autoprefixer": "^10.4.4",
@@ -58,6 +61,8 @@
 	"type": "module",
 	"dependencies": {
 		"@auth0/auth0-spa-js": "^1.22.0",
+		"@felte/reporter-svelte": "^1.1.2",
+		"@felte/validator-yup": "^1.0.8",
 		"@material/typography": "^13.0.0",
 		"auth0-js": "^9.19.0",
 		"axios": "^0.26.1",
@@ -65,10 +70,14 @@
 		"cookie": "^0.4.2",
 		"cookies": "^0.8.0",
 		"dotenv": "^16.0.0",
+		"felte": "^1.2.2",
+		"imask": "^6.4.2",
 		"jsonwebtoken": "^8.5.1",
 		"luxon": "^2.4.0",
 		"nanoid": "^3.3.1",
+		"tippy.js": "^6.3.7",
 		"tslib": "^2.3.1",
-		"tsscmp": "^1.0.6"
+		"tsscmp": "^1.0.6",
+		"yup": "^0.32.11"
 	}
 }

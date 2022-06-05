@@ -6,7 +6,7 @@ import type { Auth0UserProfile } from 'auth0-js';
 
 const validateToken = async (token) =>
 	new Promise<Auth0UserProfile>((resolve, reject) => {
-		webAuthClient.validateToken(token, 'nonce', function (error, result) {
+		webAuthClient.validateToken(token, '', function (error, result) {
 			if (error) {
 				return reject(error);
 			}
@@ -28,10 +28,12 @@ export const getSessionFromRequest = async (req: Request): Promise<App.Session> 
 	if (!token || !idToken) {
 		return {
 			actor: {
+				username: '',
 				userID: '',
 				subjectID: SUBJECT.PUBLIC,
 			},
 			provider: '',
+			verified: false,
 		};
 	}
 
@@ -41,18 +43,22 @@ export const getSessionFromRequest = async (req: Request): Promise<App.Session> 
 		const [provider, userID] = res.sub.split('|');
 		return {
 			actor: {
+				username: res.username || res.email,
 				userID,
 				subjectID: SUBJECT.USER,
 			},
 			provider,
+			verified: res.email_verified,
 		};
 	} catch (err) {
 		return {
 			actor: {
+				username: '',
 				userID: '',
 				subjectID: SUBJECT.PUBLIC,
 			},
 			provider: '',
+			verified: false,
 		};
 	}
 };

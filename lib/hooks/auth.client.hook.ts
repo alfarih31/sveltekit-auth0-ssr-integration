@@ -1,5 +1,10 @@
-import routeConfig, { loginPath } from '$configs/client/route.config';
+import routeConfig, {
+	loginPath,
+	logoutPath,
+	requestEmailVerifyPath,
+} from '$configs/client/route.config';
 import { ERR_FORBIDDEN, ERR_UNAUTHORIZED } from '$lib';
+import { session } from '$app/stores';
 
 export const getRoutePermission = (pathname: string, session: App.Session): boolean => {
 	const c = routeConfig[pathname];
@@ -45,6 +50,13 @@ export const authCheck = (
 		return {
 			status: 401,
 			error: ERR_UNAUTHORIZED,
+		};
+	}
+
+	if (!_session.verified && ![requestEmailVerifyPath, loginPath, logoutPath].includes(_pathname)) {
+		return {
+			status: 302,
+			redirect: requestEmailVerifyPath,
 		};
 	}
 
