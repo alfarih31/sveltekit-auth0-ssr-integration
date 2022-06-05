@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-1. Node.js v12
+1. Node.js v16
 
 ## Set-up
 
