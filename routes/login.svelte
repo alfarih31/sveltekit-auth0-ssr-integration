@@ -141,6 +141,8 @@
 
 		isLoading = false;
 	};
+
+	const renderGoogle = async () => {};
 </script>
 
 <div class="FlexContainer--Center">
@@ -218,8 +220,14 @@
 								class="white-circular"
 							/>
 						{:else}
-							<Icon class="material-icons">google</Icon>
-							<Label>Log in with google</Label>
+							<img
+								class="mdc-button__icon"
+								src="https://img.icons8.com/color/48/undefined/google-logo.png"
+								height="18px"
+								width="18px"
+								rel="google-icon"
+							/>
+							<Label>Log in with Google</Label>
 						{/if}
 					</Button>
 				</Cell>
@@ -238,7 +246,7 @@
 							/>
 						{:else}
 							<Icon class="material-icons">facebook</Icon>
-							<Label>Log in with facebook</Label>
+							<Label>Log in with Facebook</Label>
 						{/if}
 					</Button>
 				</Cell>
@@ -246,3 +254,13 @@
 		</Content>
 	</Paper>
 </div>
+
+<style lang="scss">
+	.google-icon {
+		margin-left: 0;
+		margin-right: 8px;
+		display: inline-block;
+		position: relative;
+		vertical-align: top;
+	}
+</style>
