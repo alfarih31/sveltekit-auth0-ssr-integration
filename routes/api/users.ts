@@ -1,11 +1,17 @@
 import type { RequestEvent } from '@sveltejs/kit';
 import { getUsers } from '$lib/services/api/by-request/auth0';
+import { getUserManagementTokenFromRequest } from '$lib/hooks/auth.hook';
 
 export const get: ({ request }: RequestEvent) => Promise<{
-	headers: { 'Content-Type': string };
-	body: any;
+	headers?: { 'Content-Type': string };
+	body?: any;
 	status: number;
 }> = async ({ request }: RequestEvent) => {
+	const token = getUserManagementTokenFromRequest(request);
+	if (!token) {
+		return { status: 401 };
+	}
+
 	const url = new URL(request.url);
 	const q = url.searchParams;
 
