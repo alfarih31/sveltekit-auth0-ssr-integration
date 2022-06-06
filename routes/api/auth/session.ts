@@ -7,6 +7,6 @@ export const get: RequestHandler = async ({ request }) => {
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify(await getSessionFromRequest(request)),
+		body: JSON.stringify(Object.assign(await getSessionFromRequest(request))),
 	};
 };

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { InferType } from 'yup';
+	import * as yup from 'yup';
 	import type { ValidatorConfig } from '@felte/validator-yup';
 	import { validator } from '@felte/validator-yup';
-	import * as yup from 'yup';
 	import Paper, { Content } from '@smui/paper';
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
 	import Button, { Icon, Label } from '@smui/button';
@@ -74,8 +74,7 @@
 			await login(email, password);
 
 			// Get profile
-			const res = await getProfile();
-			userState.set({ ...$userState, profile: res });
+			$userState.profile = await getProfile();
 
 			// Goto home
 			goto(homePath, { replaceState: true }).then(() => {
@@ -102,6 +101,7 @@
 			const { email, password } = $data;
 			await register({ email, password });
 
+			$userState.profile = await getProfile();
 			// Goto home
 			goto(homePath, { replaceState: true }).then(() => {
 				showSnackbar('Logged in...', {

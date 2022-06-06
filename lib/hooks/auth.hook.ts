@@ -3,6 +3,7 @@ import { decryptString } from '$lib/modules/crypto';
 import { COOKIES_KEY, SUBJECT } from '$lib/CONSTANTS';
 import { webAuthClient } from '$lib/services/clients/parties/auth0';
 import type { Auth0UserProfile } from 'auth0-js';
+import { getUserInfo } from '$lib/services/api/by-request/auth0';
 
 const validateToken = async (token) =>
 	new Promise<Auth0UserProfile>((resolve, reject) => {
