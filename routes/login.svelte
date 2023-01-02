@@ -142,6 +142,20 @@
 		isLoading = false;
 	};
 
+	const handleLoginWithLine = async () => {
+		isLoading = true;
+		webAuthClient.authorize({
+			connection: 'line',
+			redirectUri: window.location.origin + '/api/auth/callback',
+			responseType: 'code',
+			responseMode: 'query',
+			scope: 'offline_access profile openid email',
+			nonce: 'nonce',
+		});
+
+		isLoading = false;
+	};
+
 	const renderGoogle = async () => {};
 </script>
 
@@ -247,6 +261,31 @@
 						{:else}
 							<Icon class="material-icons">facebook</Icon>
 							<Label>Log in with Facebook</Label>
+						{/if}
+					</Button>
+				</Cell>
+				<Cell span="12">
+					<Button
+						on:click|once={handleLoginWithLine}
+						touch
+						class="btn btn-primary"
+						disabled={isLoading}
+					>
+						{#if isLoading}
+							<CircularProgress
+								style="height: 24px; width: 24px;"
+								indeterminate
+								class="white-circular"
+							/>
+						{:else}
+							<img
+								class="mdc-button__icon"
+								src="https://user-images.githubusercontent.com/69343830/102716411-1c227700-431f-11eb-86e6-dd389b690681.png"
+								height="18px"
+								width="18px"
+								rel="naver-icon"
+							/>
+							<Label>Log in with Line</Label>
 						{/if}
 					</Button>
 				</Cell>
