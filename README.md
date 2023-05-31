@@ -1,5 +1,9 @@
 # `Sveltekit` & `Auth0` - SSR integration
 
+View the demo here 🥳🥳🥳
+
+### [🎪🎪 auth0-ssr-sveltekit.vercel.app 🎪🎪](https://auth0-ssr-sveltekit.vercel.app/) ###
+
 ## Prerequisites
 
 1. Node.js v16
